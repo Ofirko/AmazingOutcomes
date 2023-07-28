@@ -38,3 +38,20 @@ test('Player 2 scores two point', () => {
 test('Game prints score as 15-30', () => {
     expect(App.game.getScore()).toBe('15-30');
 })
+
+test('Game prints score as deuce', () => {
+  App.game.scorePoint(App.players.player1);
+  App.game.scorePoint(App.players.player1);
+  App.game.scorePoint(App.players.player2);
+  expect(App.game.getScore()).toBe('deuce');
+})
+
+test('Game prints score as advantage', () => {
+  App.game.scorePoint(App.players.player1);
+  expect(App.game.getScore()).toBe('player1 advantage');
+})
+
+test('Game prints score as deuce after advantage lost', () => {
+  App.game.scorePoint(App.players.player2);
+  expect(App.game.getScore()).toBe('deuce');
+})

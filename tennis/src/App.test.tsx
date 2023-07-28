@@ -1,9 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import * as App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('Game object exists', ()=> {
+  expect(App.game).toBeDefined();
+});
+
+test('Players object exists', ()=> {
+  expect(App.players).toBeDefined();
+});
+
+
+test('Players object has 2 players', ()=> {
+  expect(App.players).toHaveProperty();
 });

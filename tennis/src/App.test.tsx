@@ -82,3 +82,10 @@ test('Game prints player1 wins when player1 scores with 40 and player2 with 30',
     App.game.scorePoint(App.players.player1);
     expect(App.game.getScore()).toBe('player1 wins');
 })
+
+test('Game prints player2 wins when player2 scores with 40 and player1 with 30', () => {
+  App.players.player1.score = 2;
+  App.players.player2.score = 3;
+  App.game.scorePoint(App.players.player2);
+  expect(App.game.getScore()).toBe('player2 wins');
+})

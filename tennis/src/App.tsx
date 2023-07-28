@@ -38,6 +38,10 @@ export const game = {
             return 'player1 wins';
         }
 
+        if (players.player2.score == 4 && players.player1.score < 4) {
+          return 'player2 wins';
+        }
+
         return scoreNames[players.player1.score] + '-' + scoreNames[players.player2.score];
     }
 };

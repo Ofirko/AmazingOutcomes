@@ -40,18 +40,45 @@ test('Game prints score as 15-30', () => {
 })
 
 test('Game prints score as deuce', () => {
-  App.game.scorePoint(App.players.player1);
-  App.game.scorePoint(App.players.player1);
-  App.game.scorePoint(App.players.player2);
-  expect(App.game.getScore()).toBe('deuce');
+    App.game.scorePoint(App.players.player1);
+    App.game.scorePoint(App.players.player1);
+    App.game.scorePoint(App.players.player2);
+    expect(App.game.getScore()).toBe('deuce');
 })
 
 test('Game prints score as advantage', () => {
-  App.game.scorePoint(App.players.player1);
-  expect(App.game.getScore()).toBe('player1 advantage');
+    App.game.scorePoint(App.players.player1);
+    expect(App.game.getScore()).toBe('player1 advantage');
 })
 
 test('Game prints score as deuce after advantage lost', () => {
-  App.game.scorePoint(App.players.player2);
-  expect(App.game.getScore()).toBe('deuce');
+    App.game.scorePoint(App.players.player2);
+    expect(App.game.getScore()).toBe('deuce');
+})
+
+test('Game prints score as player 2 advantage when player 2 scores', () => {
+    App.game.scorePoint(App.players.player2);
+    expect(App.game.getScore()).toBe('player2 advantage');
+})
+
+test('Game prints player 1 wins when player 1 scores from advantage', () => {
+    App.game.scorePoint(App.players.player1);
+    App.game.scorePoint(App.players.player1);
+    App.game.scorePoint(App.players.player1);
+    expect(App.game.getScore()).toBe('player1 wins');
+})
+
+test('Game prints player 2 wins when player 2 scores from advantage', () => {
+    App.players.player1.score = 3;
+    App.players.player2.score = 3;
+    App.game.scorePoint(App.players.player2);
+    App.game.scorePoint(App.players.player2);
+    expect(App.game.getScore()).toBe('player2 wins');
+});
+
+test('Game prints player1 wins when player1 scores with 40 and player2 with 30', () => {
+    App.players.player1.score = 3;
+    App.players.player2.score = 2;
+    App.game.scorePoint(App.players.player1);
+    expect(App.game.getScore()).toBe('player1 wins');
 })
